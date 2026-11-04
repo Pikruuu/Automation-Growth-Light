@@ -37,23 +37,24 @@ void loop()
   
   // put your main code here, to run repeatedly:
   BH1750.start();   //starts a measurement
-  float lux=BH1750.getLux();  //  waits until a conversion finished
+  float mol=BH1750.getLux() * 0.145;  //  waits until a conversion finished
   
   display.clearDisplay();
   display.setCursor(0, 0);
-	display.print("lux: ");
-	display.print(lux);
+	display.print("Mol: ");
+	display.print(mol);
 
-  if(lux < 50){
-      Serial.print(lux);
+  if(mol < 50){
+      Serial.print(mol);
       Serial.println(" TRUE");        
       display.setCursor(0, 18);
       display.print("led: TRUE");
     } else {
-      Serial.print(lux);
+      Serial.print(mol);
       Serial.println(" FALSE");
       display.setCursor(0, 18);
       display.print("led: FALSE");
   }
   display.display();
+  delay(333);
 }
